@@ -1,12 +1,8 @@
-﻿// WebSocket = undefined;
-//EventSource = undefined;
-//, signalR.HttpTransportType.LongPolling
-
-let connection = null;
+﻿let connection = null;
 
 setupConnection = () => {
     connection = new signalR.HubConnectionBuilder()
-        .withUrl("/coffeehub")
+        .withUrl("/coffeehub", signalR.HttpTransportType.LongPolling)
         .build();
 
     connection.on("ReceiveOrderUpdate", (update) => {
